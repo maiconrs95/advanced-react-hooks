@@ -14,7 +14,13 @@ function CountProvider(props) {
 }
 
 function useCountContext() {
-  return React.useContext(CountContext)
+  const context = React.useContext(CountContext)
+
+  if (!context) {
+    throw new Error('useCountContext must be used within the CountProvider')
+  }
+
+  return context
 }
 
 function CountDisplay() {
